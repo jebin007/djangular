@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <html>
     <body ng-app="scrumboard.demo">
 
@@ -8,60 +10,14 @@
                     <ul>
                         <li ng-repeat="card in list.cards">{{ card.title }} </li>
                     </ul>
-                    <input type="text" ng-model="new_title" /> {{ new_title }}
+                    <input type="text" ng-model="new_title" />
                     <button ng-click="add(list, new_title)">+</button>
                 </div>
             </div>
             {% endverbatim %}
 
             <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-            <script>
-                (function() {
-                    'use strict';
-                    angular.module('scrumboard.demo', [])
-                        .controller('ScrumboardController', ['$scope', ScrumboardController]);
-
-                    function ScrumboardController($scope) {
-                        
-                        $scope.add = function (list, title) {
-                            var card = {
-                                title: title
-                            };
-
-                            list.cards.push(card);
-                        };
-
-                        $scope.data = [
-                            {
-                                name: 'Django demo',
-                                cards: [
-                                    {
-                                        title: 'Create Models'
-                                    },
-                                    {
-                                        title: 'Create View',
-                                    },
-                                    {
-                                        title: 'Migrate Database'
-                                    },
-                                ]
-                            },
-                            {
-                                name:'Angular Demo',
-                                cards: [
-                                    {
-                                        title:'Write HTML'
-                                    },
-                                    {
-                                        title:'Write JavaScript'
-                                    },
-                                ]
-                            }
-                        ];
-                    }    
-
-                }());
-            </script>
+            <script src="{% static "scrumboard/scrumboard.js" %}"></script>
             
 
     </body>
