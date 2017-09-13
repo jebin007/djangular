@@ -19,6 +19,11 @@
             });
         };
 
+        $scope.login = function(){
+            $http.post('/auth_api/login/',
+                {username: 'jevin', password: 'Password123'});
+        };
+
         $scope.data = [];
         $http.get('/scrumboard/lists/').then(function(response) {
             $scope.data = response.data;
