@@ -19,16 +19,21 @@
             });
         };
 
-        $scope.login = function(){
-            $http.post('/auth_api/login/',
-                {username: 'jevin', password: 'Password123'});
-        };
+        $scope.logout = function() {
+            http.get('/auth_api/logout/')
+                .then(function () {
+                    $location.url('/login');
+                });
+        }
 
         $scope.data = [];
         $http.get('/scrumboard/lists/').then(function(response) {
             $scope.data = response.data;
         });
 
+        $scope.sortBy='story_points';
+        $scope.reverse=true;
+        $scope.showFilters=false;
     }    
 
 }());
